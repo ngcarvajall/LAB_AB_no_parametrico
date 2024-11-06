@@ -36,17 +36,17 @@ def exploracion_dataframe(dataframe, columna_control):
     
     for col in dataframe_categoricas.columns:
         print(f"La columna {col} tiene las siguientes valore únicos:")
-        display(pd.DataFrame(dataframe[col].value_counts()).head())    
+        display(pd.DataFrame(dataframe[col].value_counts()))    
     
     # como estamos en un problema de A/B testing y lo que realmente nos importa es comparar entre el grupo de control y el de test, los principales estadísticos los vamos a sacar de cada una de las categorías
     
-    # for categoria in dataframe[columna_control].unique():
-    #     dataframe_filtrado = dataframe[dataframe[columna_control] == categoria]
+    for categoria in dataframe[columna_control].unique():
+        dataframe_filtrado = dataframe[dataframe[columna_control] == categoria]
     
-    #     print("\n ..................... \n")
-    #     print(f"Los principales estadísticos de las columnas categóricas para el {categoria} son: ")
-    #     display(dataframe_filtrado.describe(include = "O").T)
+        print("\n ..................... \n")
+        print(f"Los principales estadísticos de las columnas categóricas para el {categoria} son: ")
+        display(dataframe_filtrado.describe(include = "O").T)
         
-    #     print("\n ..................... \n")
-    #     print(f"Los principales estadísticos de las columnas numéricas para el {categoria} son: ")
-    #     display(dataframe_filtrado.describe().T)
+        print("\n ..................... \n")
+        print(f"Los principales estadísticos de las columnas numéricas para el {categoria} son: ")
+        display(dataframe_filtrado.describe().T)
